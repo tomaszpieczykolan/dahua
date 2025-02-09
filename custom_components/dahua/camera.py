@@ -21,6 +21,7 @@ _LOGGER: logging.Logger = logging.getLogger(__package__)
 SERVICE_SET_INFRARED_MODE = "set_infrared_mode"
 # This service handles setting the video profile mode to day or night
 SERVICE_SET_VIDEO_PROFILE_MODE = "set_video_profile_mode"
+SERVICE_SET_PTZ_ABS_POSITION = "async_set_ptz_position"
 SERVICE_SET_FOCUS_ZOOM = "set_focus_zoom"
 SERVICE_SET_PRIVACY_MASKING = "set_privacy_masking"
 SERVICE_SET_CHANNEL_TITLE = "set_channel_title"
@@ -73,6 +74,15 @@ async def async_setup_entry(hass: HomeAssistant, config_entry, async_add_entitie
                 ])
         },
         "async_set_video_profile_mode"
+    )
+
+    platform.async_register_entity_service(
+        SERVICE_SET_PTZ_ABS_POSITION,
+        {
+            vol.Required("x", default=0): int,
+            vol.Required("y", default=0): int,
+        },
+        "async_set_ptz_position"
     )
 
     platform.async_register_entity_service(
@@ -320,6 +330,10 @@ class DahuaCamera(DahuaBaseEntity, Camera):
             await self._coordinator.client.async_set_night_switch_mode(channel, mode)
         else:
             await self._coordinator.client.async_set_video_profile_mode(channel, mode)
+
+    async def async_set_ptz_position(self, x: int, y: int):
+        """ Handles the service call from SERVICE_SET_PTZ_ABS_POSITION to set absolute PTZ position """
+        await self._coordinator.client.async_set_ptz_position(x, y)
 
     async def async_adjustfocus(self, focus: str, zoom: str):
         """ Handles the service call from SERVICE_SET_INFRARED_MODE to set zoom and focus """
