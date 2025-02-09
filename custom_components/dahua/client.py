@@ -363,6 +363,19 @@ class DahuaClient:
         url = "/cgi-bin/configManager.cgi?action=setConfig&VideoInMode[{0}].Config[0]={1}".format(channel, mode)
         return await self.get(url, True)
 
+    async def async_get_ptz_position(self) -> dict:
+        """ async_get_ptz_position gets PTZ position """
+        url = "/cgi-bin/ptz.cgi?action=getStatus"
+        try:
+            return await self.async_get_config("Position")
+        except aiohttp.ClientResponseError as e:
+            return 2
+
+    async def async_set_ptz_position(self, x: int, y: int) -> dict:
+        """ async_set_ptz_position will set the PTZ position  """
+        url = "/cgi-bin/ptz.cgi?action=start&code=PositionABS&arg1={x}&arg2={y}&arg3=1&arg4=0".format(x=x,y=y)
+        return await self.get(url)
+
     async def async_adjustfocus_v1(self, focus: str, zoom: str):
         """
         async_adjustfocus will set the zoom and focus
