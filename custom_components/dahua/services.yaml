@@ -402,26 +402,26 @@ set_ptz_abs_pos:
   fields:
     x:
       name: X
-      description: "Horizontal angle (0-3250)"
+      description: "Horizontal angle"
       example: 0
       required: true
       default: 0
       selector:
         number:
           mode: box
-          min: 0
-          max: 3250
+          min: -1
+          max: 1
     y:
       name: Y
-      description: "Vertical angle (-150-1000)"
+      description: "Vertical angle"
       example: 0
       required: true
       default: 0
       selector:
         number:
           mode: box
-          min: -150
-          max: 1000
+          min: -1
+          max: 1
 
 set_focus_zoom:
   name: Set the Dahua Focus and Zoom
