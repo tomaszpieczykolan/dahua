@@ -371,7 +371,7 @@ class DahuaClient:
         except aiohttp.ClientResponseError as e:
             return 2
 
-    async def async_set_ptz_position(self, channel: int, x: int, y: int) -> dict:
+    async def async_set_ptz_position(self, channel: int, x: str, y: str) -> dict:
         """ async_set_ptz_position will set the PTZ position  """
         url = "/cgi-bin/ptz.cgi?action=moveAbsolutely&channel={channel}&arg1={x}&arg2={y}&arg3=0".format(
             channel=channel, x=x, y=y
