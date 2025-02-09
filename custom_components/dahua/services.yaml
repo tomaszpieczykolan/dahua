@@ -392,6 +392,37 @@ vto_cancel_call:
       integration: dahua
       domain: camera
 
+set_ptz_abs_pos:
+  name: Set the Dahua absolute PTZ position
+  description: Moves the camera
+  target:
+    entity:
+      integration: dahua
+      domain: camera
+  fields:
+    x:
+      name: X
+      description: "Horizontal angle (0-3250)"
+      example: 0
+      required: true
+      default: 0
+      selector:
+        number:
+          mode: box
+          min: 0
+          max: 3250
+    y:
+      name: Y
+      description: "Vertical angle (-150-1000)"
+      example: 0
+      required: true
+      default: 0
+      selector:
+        number:
+          mode: box
+          min: -150
+          max: 1000
+
 set_focus_zoom:
   name: Set the Dahua Focus and Zoom
   description: Sets the camera's focus and zoom
