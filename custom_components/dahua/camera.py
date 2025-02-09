@@ -333,7 +333,8 @@ class DahuaCamera(DahuaBaseEntity, Camera):
 
     async def async_set_ptz_position(self, x: int, y: int):
         """ Handles the service call from SERVICE_SET_PTZ_ABS_POSITION to set absolute PTZ position """
-        await self._coordinator.client.async_set_ptz_position(x, y)
+        channel = self._coordinator.get_channel()
+        await self._coordinator.client.async_set_ptz_position(channel, x, y)
 
     async def async_adjustfocus(self, focus: str, zoom: str):
         """ Handles the service call from SERVICE_SET_INFRARED_MODE to set zoom and focus """
