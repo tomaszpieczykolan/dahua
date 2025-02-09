@@ -331,7 +331,7 @@ class DahuaCamera(DahuaBaseEntity, Camera):
         else:
             await self._coordinator.client.async_set_video_profile_mode(channel, mode)
 
-    async def async_set_ptz_position(self, x: int, y: int):
+    async def async_set_ptz_position(self, x: str, y: str):
         """ Handles the service call from SERVICE_SET_PTZ_ABS_POSITION to set absolute PTZ position """
         channel = self._coordinator.get_channel()
         await self._coordinator.client.async_set_ptz_position(channel, x, y)
