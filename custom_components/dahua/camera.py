@@ -21,7 +21,7 @@ _LOGGER: logging.Logger = logging.getLogger(__package__)
 SERVICE_SET_INFRARED_MODE = "set_infrared_mode"
 # This service handles setting the video profile mode to day or night
 SERVICE_SET_VIDEO_PROFILE_MODE = "set_video_profile_mode"
-SERVICE_SET_PTZ_ABS_POSITION = "async_set_ptz_position"
+SERVICE_SET_PTZ_ABS_POSITION = "set_ptz_abs_pos"
 SERVICE_SET_FOCUS_ZOOM = "set_focus_zoom"
 SERVICE_SET_PRIVACY_MASKING = "set_privacy_masking"
 SERVICE_SET_CHANNEL_TITLE = "set_channel_title"
